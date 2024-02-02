@@ -1,0 +1,38 @@
+﻿@model List<Project>
+@{
+    ViewData["Title"] = "Project";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <h2>Projects</h2>
+</head>
+<body>
+    @if (Model.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Name</td>
+                    <td>Description</td>
+                </tr>
+            </thead>
+
+            @foreach (var project in Model)
+            {
+                <tr>
+                    <td>@project.ProjectId</td>
+                    <td>@project.Name</td>
+                    <td>@project.Description</td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <p>no data</p>
+    }
+</body>
+</html>
