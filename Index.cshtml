@@ -1,0 +1,49 @@
+﻿@model List<GBC_TRAVEL.Models.CarRental>
+
+@{
+    ViewData["Title"] = "Car Rentals";
+}
+
+<h2>Car Rental List</h2>
+<a asp-action="Create" class="btn btn-primary">Create New Car Rental</a>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Company Name</td>
+                <td>Location</td>
+                <td>Car Type</td>
+                <td>Price Per Day</td>
+                <td>Pickup Date</td>
+                <td>Dropoff Date</td>
+                <td>Actions</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var carRental in Model)
+            {
+                <tr>
+                    <td>@carRental.CarRentalID</td>
+                    <td>@carRental.CompanyName</td>
+                    <td>@carRental.Location</td>
+                    <td>@carRental.CarType</td>
+                    <td>@carRental.PricePerDay.ToString("C")</td>
+                    <td>@carRental.PickupDate.ToString("d")</td>
+                    <td>@carRental.DropoffDate.ToString("d")</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@carRental.CarRentalID" class="btn btn-info">Details</a>
+                        <a asp-action="Edit" asp-route-id="@carRental.CarRentalID" class="btn btn-secondary">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@carRental.CarRentalID" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No Car Rentals Found</p>
+}
